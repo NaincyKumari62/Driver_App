@@ -22,20 +22,23 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: elevation,
-      borderRadius: BorderRadius.circular(borderRadius),
-      child: Container(
-        width: double.infinity,
-        height: 50,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderRadius),
-          color:  bgColor,
-        ),
-        child: Center(
-          child: Text(text,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
-        ),
+    return InkWell(
+      onTap: onPressed,
+      child: Material(
+        elevation: elevation,
+        borderRadius: BorderRadius.circular(borderRadius),
+        child: Container(
+          width: double.infinity,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(borderRadius),
+            color:  bgColor,
+          ),
+          child: Center(
+            child: Text(text,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
+          ),
 
+        ),
       ),
     );
   }
