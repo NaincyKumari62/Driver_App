@@ -1,3 +1,4 @@
+import 'package:driver_app/screens/login_screen.dart';
 import 'package:driver_app/screens/onborading_screen.dart';
 import 'package:driver_app/widgets/text/small_text.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class _OtpVerificationState extends State<OtpVerification> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>OnboardingScreen()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
         }, icon: Icon(Icons.arrow_back)),
         title: Text('Verify OTP',style: TextStyle(
           fontSize: 20,
@@ -69,8 +70,8 @@ class _OtpVerificationState extends State<OtpVerification> {
                 pinTheme: PinTheme(
                   shape: PinCodeFieldShape.box,
                   borderRadius: BorderRadius.circular(10),
-                  fieldHeight: 50,
-                  fieldWidth: 53,
+                  fieldHeight: 40,
+                  fieldWidth: 43,
                   inactiveFillColor: Colors.white,
                   selectedFillColor: Colors.white,
                   activeFillColor: Colors.white,
@@ -83,7 +84,7 @@ class _OtpVerificationState extends State<OtpVerification> {
               ),
             ),
 
-            SizedBox(height: 225),
+            SizedBox(height: 20),
 
             CustomButton(text: 'Verify', onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (_)=>OnboardingScreen()));

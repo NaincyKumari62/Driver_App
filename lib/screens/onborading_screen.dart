@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+import '../widgets/file_box/upload_file_box.dart';
 import '../widgets/input_field/input_text_field.dart';
 import '../widgets/text/big_text.dart';
 import 'onboarding2.dart';
@@ -35,15 +36,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   String selectedState = 'Select State';
 
-  Future<void> getImage() async {
+
+  Future<void> getImage(Function(File) onImagePicked) async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
+      onImagePicked(File(pickedFile.path));
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -70,60 +69,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               // Upload Photo
               MediumText(text: "Upload your passport size photo"),
               SizedBox(height: 10),
-              Center(
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  decoration: BoxDecoration(
-                    color: Color(0xffFAFDFF),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Color(0xffE4EDF4)),
-                  ),
-                  child: GestureDetector(
-                    onTap: getImage,
-                    child: Column(
-                      children: [
-                        _image == null
-                            ? Container(
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Image.asset(
-                                  'assets/images/upload_file.png',
-                                ),
-                              )
-                            : Image.file(_image!, height: 30, width: 20),
-                        SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Drag & Drop or ",
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Text(
-                                "Choose file",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                            ),
-                            Text(" to upload", style: TextStyle(fontSize: 16)),
-                          ],
-                        ),
-                        Text(
-                          "jpg, png, jpeg",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              UploadFileBox(
+                image: _image,
+               onTap: ()=>getImage((file){
+                 setState(() {
+                   _image = file;
+                 });
+               }) ,
               ),
               SizedBox(height: 16),
 
@@ -234,11 +186,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               BigText(text:"Branch Name",fontSize: 16,fontWeight: FontWeight.w500,),
               InputTextField(hintText: "Branch Name",controller:  branchNameController),
               BigText(text:"IFSC Code",fontSize: 16,fontWeight: FontWeight.w500,),
-              InputTextField(hintText: "IFSC Code",controller:  ifscController),
+              InputTextField(hintText: "IFSC Code",controller:  ifscController,
+                validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Please Enter IFSC Code";
+                }
+                return null;
+              },),
 
               SizedBox(height: 24),
                CustomButton(text: 'Save & Next', onPressed: (){
-                 Navigator.push(context, MaterialPageRoute(builder: (_)=>OnboardingScreen2()));
+                 if(_formKey.currentState!.validate()){
+                   Navigator.push(context, MaterialPageRoute(builder: (_)=>OnboardingScreen2()));
+                 }
+
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=>OnboardingScreen2()));
                }, bgColor: Colors.black),
               SizedBox(height: 24),
             ],
