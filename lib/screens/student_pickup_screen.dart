@@ -1,6 +1,5 @@
 import 'package:driver_app/widgets/button/small_rounded_button.dart';
 import 'package:driver_app/widgets/text/big_text.dart';
-import 'package:driver_app/widgets/text/medium_text.dart';
 import 'package:driver_app/widgets/text/small_color_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,12 +14,7 @@ class StudentPickupScreen extends StatefulWidget {
 }
 
 class _StudentPickupScreenState extends State<StudentPickupScreen> {
-
-   Color  btnBlackColor = Colors.black;
-   Color btnGrayColor = Colors.grey;
-
-
-  final List<Map<String, String>> students = const [
+  final List<Map<String, String>> students = [
     {
       "name": "Arnav Mahanti",
       "address": "ABC Street, 123 Apartment, Kol",
@@ -36,16 +30,20 @@ class _StudentPickupScreenState extends State<StudentPickupScreen> {
       "address": "ABC Street, 123 Apartment, Kol",
       "image": "https://i.pravatar.cc/150?img=3",
     },
-    {
-      "name": "Annette Black",
-      "address": "ABC Street, 123 Apartment, Kol",
-      "image": "https://i.pravatar.cc/150?img=3",
-    },
   ];
+
+  /// har student ka status rahenga: "none", "pickup", "drop"
+  late List<String> studentStatus;
+
+  @override
+  void initState() {
+    super.initState();
+    // by default sabhi ka status none
+    studentStatus = List.filled(students.length, "none");
+  }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -63,36 +61,38 @@ class _StudentPickupScreenState extends State<StudentPickupScreen> {
         padding: EdgeInsets.symmetric(horizontal: 15.w),
         child: Column(
           children: [
-            // top section
+            // Top Section
             Container(
               width: double.infinity,
               height: 60.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Color(0xffFAFAFA),
+                color: const Color(0xffFAFAFA),
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    BigText(text: 'ETA to next stop - 6mins', fontSize: 14.sp),
-
+                    BigText(
+                        text: 'ETA to next stop - 6mins', fontSize: 14.sp),
                     SmallRoundedButton(
                       cWidth: 90.w,
                       cHeight: 30.h,
                       btnName: 'Live',
-                      bgColor: Color(0xff48C089),
+                      bgColor: const Color(0xff48C089),
                       onPressed: () {},
                     ),
                   ],
                 ),
               ),
             ),
+
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                padding:
+                EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                 child: SmallColorText(text: "Students"),
               ),
             ),
@@ -102,49 +102,34 @@ class _StudentPickupScreenState extends State<StudentPickupScreen> {
                 itemCount: students.length,
                 itemBuilder: (context, index) {
                   final student = students[index];
+                  final status = studentStatus[index];
+
+                  // status ke hisaab se button color set
+                  Color pickColor =
+                  status == "pickup" ? Colors.black : Colors.grey;
+                  Color dropColor =
+                  status == "drop" ? Colors.black : Colors.grey;
+
                   return StudentCard(
                     name: student['name']!,
                     address: student['address']!,
                     imageUrl: student['image']!,
+                    pickBtnColor: pickColor,
+                    dropBtnColor: dropColor,
                     onPicked: () {
-
+                      setState(() {
+                        studentStatus[index] = "pickup";
+                      });
                     },
-                    onDropped: () {},
-                    pickBtnColor: btnBlackColor,
-                    dropBtnColor: btnGrayColor,
+                    onDropped: () {
+                      setState(() {
+                        studentStatus[index] = "drop";
+                      });
+                    },
                   );
                 },
               ),
             ),
-            // Row(
-            //   children: [
-            //     ElevatedButton(
-            //       onPressed: () {
-            //         setState(() {
-            //           selectedStatus[index] = 'Pickup';
-            //         });
-            //       },
-            //       style: ElevatedButton.styleFrom(
-            //         backgroundColor:
-            //         selectedStatus[index] == 'Pickup' ? Colors.black : Colors.grey,
-            //       ),
-            //       child: Text('Pickup'),
-            //     ),
-            //     SizedBox(width: 10),
-            //     ElevatedButton(
-            //       onPressed: () {
-            //         setState(() {
-            //           selectedStatus[index] = 'Drop';
-            //         });
-            //       },
-            //       style: ElevatedButton.styleFrom(
-            //         backgroundColor:
-            //         selectedStatus[index] == 'Drop' ? Colors.black : Colors.grey,
-            //       ),
-            //       child: Text('Drop'),
-            //     ),
-            //   ],
-            // ),
           ],
         ),
       ),
@@ -156,14 +141,17 @@ class _StudentPickupScreenState extends State<StudentPickupScreen> {
         unselectedItemColor: Colors.grey,
         currentIndex: 0,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_filled), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.money), label: 'Earnings'),
           BottomNavigationBarItem(
             icon: Icon(Icons.schedule),
             label: 'Attendance',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.support), label: 'Support'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.support_agent), label: 'Support'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
     );
