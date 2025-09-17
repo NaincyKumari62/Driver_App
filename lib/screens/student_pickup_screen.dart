@@ -1,9 +1,11 @@
-import 'package:driver_app/widgets/button/rounded_button.dart';
 import 'package:driver_app/widgets/button/small_rounded_button.dart';
 import 'package:driver_app/widgets/text/big_text.dart';
 import 'package:driver_app/widgets/text/medium_text.dart';
+import 'package:driver_app/widgets/text/small_color_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../widgets/StudentCard/student_card.dart';
 
 class StudentPickupScreen extends StatefulWidget {
   const StudentPickupScreen({super.key});
@@ -13,8 +15,37 @@ class StudentPickupScreen extends StatefulWidget {
 }
 
 class _StudentPickupScreenState extends State<StudentPickupScreen> {
+
+   Color  btnBlackColor = Colors.black;
+   Color btnGrayColor = Colors.grey;
+
+
+  final List<Map<String, String>> students = const [
+    {
+      "name": "Arnav Mahanti",
+      "address": "ABC Street, 123 Apartment, Kol",
+      "image": "https://i.pravatar.cc/150?img=1",
+    },
+    {
+      "name": "Arnav Mehta",
+      "address": "ABC Street, 123 Apartment, Kol",
+      "image": "https://i.pravatar.cc/150?img=2",
+    },
+    {
+      "name": "Annette Black",
+      "address": "ABC Street, 123 Apartment, Kol",
+      "image": "https://i.pravatar.cc/150?img=3",
+    },
+    {
+      "name": "Annette Black",
+      "address": "ABC Street, 123 Apartment, Kol",
+      "image": "https://i.pravatar.cc/150?img=3",
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -22,8 +53,8 @@ class _StudentPickupScreenState extends State<StudentPickupScreen> {
           padding: EdgeInsets.only(top: 10.h),
           child: Row(
             children: [
-              BigText(text: 'Hello, ', fontSize: 20.sp),
-              BigText(text: 'Driver_name', fontSize: 16.sp),
+              BigText(text: 'Hello, ', fontSize: 22.sp),
+              BigText(text: 'Driver_name', fontSize: 17.sp),
             ],
           ),
         ),
@@ -36,7 +67,10 @@ class _StudentPickupScreenState extends State<StudentPickupScreen> {
             Container(
               width: double.infinity,
               height: 60.h,
-              decoration: BoxDecoration(color: Color(0xffFAFAFA)),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Color(0xffFAFAFA),
+              ),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Row(
@@ -49,14 +83,88 @@ class _StudentPickupScreenState extends State<StudentPickupScreen> {
                       cHeight: 30.h,
                       btnName: 'Live',
                       bgColor: Color(0xff48C089),
-                      onPressed: (){},
+                      onPressed: () {},
                     ),
                   ],
                 ),
               ),
             ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                child: SmallColorText(text: "Students"),
+              ),
+            ),
+
+            Expanded(
+              child: ListView.builder(
+                itemCount: students.length,
+                itemBuilder: (context, index) {
+                  final student = students[index];
+                  return StudentCard(
+                    name: student['name']!,
+                    address: student['address']!,
+                    imageUrl: student['image']!,
+                    onPicked: () {
+
+                    },
+                    onDropped: () {},
+                    pickBtnColor: btnBlackColor,
+                    dropBtnColor: btnGrayColor,
+                  );
+                },
+              ),
+            ),
+            // Row(
+            //   children: [
+            //     ElevatedButton(
+            //       onPressed: () {
+            //         setState(() {
+            //           selectedStatus[index] = 'Pickup';
+            //         });
+            //       },
+            //       style: ElevatedButton.styleFrom(
+            //         backgroundColor:
+            //         selectedStatus[index] == 'Pickup' ? Colors.black : Colors.grey,
+            //       ),
+            //       child: Text('Pickup'),
+            //     ),
+            //     SizedBox(width: 10),
+            //     ElevatedButton(
+            //       onPressed: () {
+            //         setState(() {
+            //           selectedStatus[index] = 'Drop';
+            //         });
+            //       },
+            //       style: ElevatedButton.styleFrom(
+            //         backgroundColor:
+            //         selectedStatus[index] == 'Drop' ? Colors.black : Colors.grey,
+            //       ),
+            //       child: Text('Drop'),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 8.0,
+        backgroundColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        currentIndex: 0,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.money), label: 'Earnings'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.schedule),
+            label: 'Attendance',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.support), label: 'Support'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
       ),
     );
   }
