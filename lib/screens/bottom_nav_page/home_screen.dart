@@ -1,19 +1,19 @@
 import 'package:driver_app/widgets/button/small_rounded_button.dart';
 import 'package:driver_app/widgets/text/big_text.dart';
-import 'package:driver_app/widgets/text/small_color_text.dart';
+import 'package:driver_app/widgets/text/medium_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../widgets/StudentCard/student_card.dart';
+import '../../widgets/StudentCard/student_card.dart';
 
-class StudentPickupScreen extends StatefulWidget {
-  const StudentPickupScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<StudentPickupScreen> createState() => _StudentPickupScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _StudentPickupScreenState extends State<StudentPickupScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   final List<Map<String, String>> students = [
     {
       "name": "Arnav Mahanti",
@@ -39,7 +39,7 @@ class _StudentPickupScreenState extends State<StudentPickupScreen> {
   void initState() {
     super.initState();
     // by default sabhi ka status none
-    studentStatus = List.filled(students.length, "none");
+    studentStatus = List.filled(students.length, "pickup");
   }
 
   @override
@@ -47,6 +47,7 @@ class _StudentPickupScreenState extends State<StudentPickupScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
         title: Padding(
           padding: EdgeInsets.only(top: 10.h),
           child: Row(
@@ -93,7 +94,7 @@ class _StudentPickupScreenState extends State<StudentPickupScreen> {
               child: Padding(
                 padding:
                 EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-                child: SmallColorText(text: "Students"),
+                child: MediumText(text: "Students",txtColor: Colors.grey.shade700,),
               ),
             ),
 
@@ -118,12 +119,12 @@ class _StudentPickupScreenState extends State<StudentPickupScreen> {
                     dropBtnColor: dropColor,
                     onPicked: () {
                       setState(() {
-                        studentStatus[index] = "pickup";
+                        studentStatus[index] = "drop";
                       });
                     },
                     onDropped: () {
                       setState(() {
-                        studentStatus[index] = "drop";
+                        studentStatus[index] = "pickup";
                       });
                     },
                   );
@@ -133,27 +134,7 @@ class _StudentPickupScreenState extends State<StudentPickupScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 8.0,
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        currentIndex: 0,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home_filled), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.money), label: 'Earnings'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.schedule),
-            label: 'Attendance',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.support_agent), label: 'Support'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: 'Profile'),
-        ],
-      ),
+
     );
   }
 }

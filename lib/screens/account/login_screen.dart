@@ -1,11 +1,12 @@
-import 'package:driver_app/screens/otp_verification.dart';
+import 'package:driver_app/res/Colors/color.dart';
+import 'package:driver_app/screens/account/otp_verification.dart';
 import 'package:driver_app/widgets/input_field/phone_number_field.dart';
 import 'package:driver_app/widgets/text/medium_text.dart';
 import 'package:driver_app/widgets/text/small_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../widgets/button/rounded_button.dart';
+import '../../widgets/button/rounded_button.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -43,27 +44,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 constraints: BoxConstraints(minHeight: constraints.maxHeight),
                 child: IntrinsicHeight(
                   child: Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 20),
+                    padding:  EdgeInsets.symmetric(horizontal: 20.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                         SizedBox(height: 40),
+                         SizedBox(height: 40.h),
 
                         Align(
                           alignment: Alignment.topCenter,
                           child: Image.asset('assets/images/vehicle.png'),
                         ),
 
-                        const SizedBox(height: 30),
+                         SizedBox(height: 30.h),
 
                         MediumText(text: 'Enter Your Phone Number'),
-                        const SizedBox(height: 5),
+                         SizedBox(height: 5.h),
 
                         PhoneNumberField(
                           phoneController: phoneController,
                         ),
 
-                        const SizedBox(height: 30),
+                         SizedBox(height: 30.h),
 
                         CustomButton(
                           text: 'Continue',
@@ -71,17 +72,17 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpVerification()));
                           },
                           bgColor: phoneController.text.trim().length == 10
-                              ? Colors.black
+                              ? AppColor.black
                               : Colors.grey,
                         ),
 
-                        const Spacer(), // Pushes SmallText to the bottom
+                         Spacer(), // Pushes SmallText to the bottom
 
                         SmallText(
                           text:
                           '''By signing up you agree to our terms and conditions. \nLearn how to use your data in our Privacy Policy.''',
                         ),
-                        const SizedBox(height: 20),
+                         SizedBox(height: 20.h),
                       ],
                     ),
                   ),

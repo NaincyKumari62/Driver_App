@@ -1,9 +1,14 @@
 import 'dart:io';
+import 'package:driver_app/res/Colors/color.dart';
+import 'package:driver_app/widgets/text/big_text.dart';
+import 'package:driver_app/widgets/text/medium_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UploadFileBox extends StatelessWidget {
   final File? image;
   final VoidCallback onTap;
+
 
   const UploadFileBox({
     Key? key,
@@ -16,11 +21,12 @@ class UploadFileBox extends StatelessWidget {
     return Center(
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        padding:  EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
         decoration: BoxDecoration(
-          color: const Color(0xffFAFDFF),
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: const Color(0xffE4EDF4)),
+
+          color:  AppColor.uploadFileBg,
+          borderRadius: BorderRadius.circular(10.r),
+          border: Border.all(color:AppColor.uploadFileBorder),
         ),
         child: GestureDetector(
           onTap: onTap,
@@ -28,35 +34,27 @@ class UploadFileBox extends StatelessWidget {
             children: [
               image == null
                   ? Container(
-                height: 40,
-                width: 40,
+                height: 40.h,
+                width: 40.w,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
+
+
+                  borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: Image.asset(
                   'assets/images/upload_file.png',
                 ),
               )
-                  : Image.file(image!, height: 30, width: 20),
-              const SizedBox(height: 8),
+                  : Image.file(image!, height: 30.h, width: 20.w),
+               SizedBox(height: 8.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    "Drag & Drop or ",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  Text(
-                    "Choose file",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  Text(
-                    " to upload",
-                    style: TextStyle(fontSize: 16),
-                  ),
+                children:  [
+                  BigText(text:  "Drag & Drop or ",fontSize: 16.sp,fontWeight: FontWeight.w400,),
+                  MediumText(text: "Choose file",fontSize: 16.sp,fontWeight: FontWeight.w400, txtColor: AppColor.blue,),
+                  BigText(text:  " to upload",fontSize: 16.sp,fontWeight: FontWeight.w400,),
+
+
                 ],
               ),
               const Text(

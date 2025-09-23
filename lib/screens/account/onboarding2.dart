@@ -1,12 +1,12 @@
+import 'package:driver_app/res/Colors/color.dart';
+import 'package:driver_app/screens/account/approval_screen.dart';
 import 'package:driver_app/widgets/button/rounded_button.dart';
 import 'package:driver_app/widgets/file_box/upload_file_box.dart';
-import 'package:driver_app/widgets/text/medium_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-
-import '../widgets/input_field/input_text_field.dart';
-import '../widgets/text/big_text.dart';
+import '../../widgets/text/big_text.dart';
 
 class OnboardingScreen2 extends StatefulWidget {
   const OnboardingScreen2({super.key});
@@ -33,11 +33,12 @@ class _OnboardingScreenState extends State<OnboardingScreen2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColor.white,
         title: Text("Onboarding"),
-        leadingWidth: 35,
+
+        leadingWidth: 35.w,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 19),
+          padding:  EdgeInsets.only(left: 19),
           child: Icon(Icons.arrow_back),
         ),
       ),
@@ -46,12 +47,12 @@ class _OnboardingScreenState extends State<OnboardingScreen2> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BigText(text: 'Document Proof :'),
-            SizedBox(height: 5),
+           BigText(text: "Document Proof :",decoration: TextDecoration.underline,),
+            SizedBox(height: 5.h),
 
             // Aadhaar Card
-            BigText(text: "Aadhaar Card (back/front)", fontSize: 14),
-            SizedBox(height: 10),
+            BigText(text: "Aadhaar Card (back/front)", fontSize: 14.sp),
+            SizedBox(height: 10.h),
             UploadFileBox(
               image: aadhaarImage,
               onTap: () => getImage((file) {
@@ -61,11 +62,11 @@ class _OnboardingScreenState extends State<OnboardingScreen2> {
               }),
             ),
 
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
 
             // PAN Card
-            BigText(text: "Pan Card", fontSize: 14),
-            SizedBox(height: 10),
+            BigText(text: "Pan Card", fontSize: 14.sp),
+            SizedBox(height: 10.h),
             UploadFileBox(
               image: panImage,
               onTap: () => getImage((file) {
@@ -75,11 +76,11 @@ class _OnboardingScreenState extends State<OnboardingScreen2> {
               }),
             ),
 
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
 
             // PCC
-            BigText(text: "PCC - Police Verification Certificate", fontSize: 14),
-            SizedBox(height: 10),
+            BigText(text: "PCC - Police Verification Certificate", fontSize: 14.sp),
+            SizedBox(height: 10.h),
             UploadFileBox(
               image: pccImage,
               onTap: () => getImage((file) {
@@ -89,11 +90,11 @@ class _OnboardingScreenState extends State<OnboardingScreen2> {
               }),
             ),
 
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
 
             // Driving License
-            BigText(text: "Driving License", fontSize: 14),
-            SizedBox(height: 10),
+            BigText(text: "Driving License", fontSize: 14.sp),
+            SizedBox(height: 10.h),
             UploadFileBox(
               image: dlImage,
               onTap: () => getImage((file) {
@@ -103,13 +104,16 @@ class _OnboardingScreenState extends State<OnboardingScreen2> {
               }),
             ),
 
-            SizedBox(height: 24),
+            SizedBox(height: 24.h),
 
             CustomButton(
               text: 'Create Profile',
-              onPressed: () {},
-              bgColor: Colors.black,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_)=>ApprovalScreen()));
+              },
+              bgColor: AppColor.black,
             ),
+            SizedBox(height: 30.h,)
           ],
         ),
       ),

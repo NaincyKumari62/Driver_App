@@ -3,19 +3,29 @@ import 'package:flutter/material.dart';
 class MediumText extends StatelessWidget {
   final String text;
   final double? fontSize;
+  final Color? txtColor;
+  final TextAlign? textAlign;
+  final FontWeight? fontWeight;
+
+
   const MediumText({
     super.key,
     required this.text,
     this.fontSize,
+    this.textAlign = TextAlign.center,
+    this.txtColor,
+    this.fontWeight = FontWeight.w400,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(text,
-      textAlign: TextAlign.center,
+      textAlign: textAlign,
       style: TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: fontSize
+      fontWeight: fontWeight,
+      fontSize: fontSize,
+        color: txtColor,
+
     ),);
   }
 }

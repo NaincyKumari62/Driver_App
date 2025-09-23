@@ -2,7 +2,7 @@ import 'package:driver_app/widgets/button/button.dart';
 import 'package:driver_app/widgets/button/rounded_button.dart';
 import 'package:driver_app/widgets/button/small_rounded_button.dart';
 import 'package:driver_app/widgets/text/big_text.dart';
-import 'package:driver_app/widgets/text/small_color_text.dart';
+import 'package:driver_app/widgets/text/medium_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -31,7 +31,7 @@ class StudentCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8.h),
       elevation: 0,
       child: Padding(
-        padding: EdgeInsets.all(12.r),
+        padding: EdgeInsets.symmetric(vertical:  15.h,horizontal: 12.w),
         child: Column(
           children: [
             Row(
@@ -45,20 +45,20 @@ class StudentCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      BigText(text: name, fontSize: 16),
-                      SmallColorText(text: address),
+                      BigText(text: name, fontSize: 16,txtColor: Color(0xff222222),),
+                     MediumText(text: address,fontSize: 13.sp,txtColor: Colors.grey.shade700,)
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 5.h),
+            SizedBox(height: 10.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SmallRoundedButton(
                   cWidth: 150.w,
-                  cHeight: 35.h,
+                  cHeight: 33.h,
                   btnName: "Picked Up",
                   bgColor: pickBtnColor,
                   onPressed: () {
@@ -69,7 +69,7 @@ class StudentCard extends StatelessWidget {
                 SizedBox(width: 5.w),
                 SmallRoundedButton(
                   cWidth: 150.w,
-                  cHeight: 35.h,
+                  cHeight: 33.h,
                   btnName: "Dropped",
                   bgColor: dropBtnColor,
                   onPressed: () {

@@ -1,11 +1,30 @@
+import 'dart:async';
+
+import 'package:driver_app/screens/dashboard/dashboard_screen.dart';
 import 'package:driver_app/widgets/text/big_text.dart';
 import 'package:driver_app/widgets/text/medium_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ApprovalScreen extends StatelessWidget {
+class ApprovalScreen extends StatefulWidget {
   const ApprovalScreen({super.key});
 
+  @override
+  State<ApprovalScreen> createState() => _ApprovalScreenState();
+}
+
+class _ApprovalScreenState extends State<ApprovalScreen> {
+  
+  @override
+  void initState() {
+    super.initState();
+    
+    Timer(Duration(seconds: 5),(){
+      Navigator.push(context, MaterialPageRoute(builder: (_)=>DashboardScreen()));
+    });
+    
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
