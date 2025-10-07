@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         title: Padding(
-          padding: EdgeInsets.only(top: 10.h),
+          padding: EdgeInsets.only(top: 13.h,left: 1.w,bottom: 4.h),
           child: Row(
             children: [
               BigText(text: 'Hello, ', fontSize: 22.sp),
@@ -59,41 +59,41 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.w),
+        padding: EdgeInsets.symmetric(horizontal: 17.w),
         child: Column(
           children: [
             // Top Section
-            Container(
-              width: double.infinity,
-              height: 60.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: const Color(0xffFAFAFA),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    BigText(
-                        text: 'ETA to next stop - 6mins', fontSize: 14.sp),
-                    SmallRoundedButton(
-                      cWidth: 90.w,
-                      cHeight: 30.h,
-                      btnName: 'Live',
-                      bgColor: const Color(0xff48C089),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            // Container(
+            //   width: double.infinity,
+            //   height: 60.h,
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(10),
+            //     color: const Color(0xffFAFAFA),
+            //   ),
+              // child: Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: 10.w),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       // BigText(
+              //       //     text: 'ETA to next stop - 6mins', fontSize: 14.sp),
+              //       // SmallRoundedButton(
+              //       //   cWidth: 90.w,
+              //       //   cHeight: 27.h,
+              //       //   btnName: 'Live',
+              //       //   bgColor: const Color(0xff48C089),
+              //       //   onPressed: () {},
+              //       // ),
+              //     ],
+              //   ),
+              // ),
+            // ),
 
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
                 padding:
-                EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
                 child: MediumText(text: "Students",txtColor: Colors.grey.shade700,),
               ),
             ),

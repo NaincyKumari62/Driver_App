@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 
 import '../../res/Colors/color.dart';
 import '../bottom_nav_page/attendance_screen.dart';
@@ -29,13 +30,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_currentIndex], // Show selected tab's screen
+      body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         elevation: 8.0,
         backgroundColor: AppColor.white,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColor.blue,
-        unselectedItemColor: AppColor.fontGrey,
+        selectedItemColor: AppColor.black,
+        unselectedItemColor: AppColor.bottomNavColor,
         currentIndex: _currentIndex,
         onTap: (int index) {
           setState(() {
@@ -44,24 +45,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset("assets/images/bottom_nav_home.png"),
+            icon: Icon(LucideIcons.house,),
+
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: _currentIndex==1?Image.asset('assets/images/earning.png',color: Colors.blue,): Image.asset('assets/images/earning.png'),
+            icon: Icon(LucideIcons.banknote),
             label: 'Earnings',
           ),
           BottomNavigationBarItem(
-            icon: _currentIndex==2? Image.asset('assets/images/attendance.png',color: Colors.blue,):
-            Image.asset('assets/images/attendance.png'),
+
+            icon: Icon(LucideIcons.file_clock),
             label: 'Attendance',
           ),
-           BottomNavigationBarItem(
-            icon:Image.asset("assets/images/bottom_nav_support.png"),
+          BottomNavigationBarItem(
+            icon: Icon(LucideIcons.headset),
             label: 'Support',
           ),
-           BottomNavigationBarItem(
-            icon:Image.asset("assets/images/bottom_nav_home.png"),
+          BottomNavigationBarItem(
+            icon: Icon(LucideIcons.user),
             label: 'Profile',
           ),
         ],

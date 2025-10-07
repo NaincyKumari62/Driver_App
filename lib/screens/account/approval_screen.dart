@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:driver_app/res/Colors/color.dart';
 import 'package:driver_app/screens/dashboard/dashboard_screen.dart';
 import 'package:driver_app/widgets/text/big_text.dart';
 import 'package:driver_app/widgets/text/medium_text.dart';
@@ -20,7 +21,7 @@ class _ApprovalScreenState extends State<ApprovalScreen> {
     super.initState();
     
     Timer(Duration(seconds: 5),(){
-      Navigator.push(context, MaterialPageRoute(builder: (_)=>DashboardScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>DashboardScreen()));
     });
     
   }
@@ -30,13 +31,15 @@ class _ApprovalScreenState extends State<ApprovalScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 100.h,horizontal: 35.w),
+          padding: EdgeInsets.symmetric(vertical: 120.h,horizontal: 35.w),
           child: Column(
             children: [
               Image.asset('assets/images/approval_image.png'),
               SizedBox(height: 10.h,),
-              BigText(text: 'Waiting For Approval',fontSize: 28.sp,),
-              MediumText(text: 'Our team is reviewing your documents and will\nget back to you in 5-7 business days',fontSize: 13.sp,)
+              BigText(text: 'Waiting For Approval',fontSize: 27.sp,),
+              SizedBox(height: 7.h,),
+
+              MediumText(text: 'Our team is reviewing your documents and will\nget back to you in 5-7 business days',fontSize: 12.sp,txtColor: AppColor.greyTextColor)
             ],
           ),
         ),

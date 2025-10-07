@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SmallText extends StatelessWidget {
   final String text;
@@ -12,7 +13,7 @@ class SmallText extends StatelessWidget {
     return Text(text,
       textAlign: TextAlign.center,
       style: TextStyle(
-      fontSize: 13,
+      fontSize: 12.sp,
 
     ),);
   }

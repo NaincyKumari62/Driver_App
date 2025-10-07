@@ -34,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
     phoneController.dispose();
   }@override
   Widget build(BuildContext context) {
+    bool isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -46,13 +47,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Padding(
                     padding:  EdgeInsets.symmetric(horizontal: 20.w),
                     child: Column(
+
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+
                          SizedBox(height: 40.h),
 
                         Align(
+
                           alignment: Alignment.topCenter,
-                          child: Image.asset('assets/images/vehicle.png'),
+
+                          child: Container(
+
+                              child: Image.asset('assets/images/login_logo.png')),
                         ),
 
                          SizedBox(height: 30.h),
@@ -76,13 +83,20 @@ class _LoginScreenState extends State<LoginScreen> {
                               : Colors.grey,
                         ),
 
-                         Spacer(), // Pushes SmallText to the bottom
+                        if (!isKeyboardOpen) ...[
+                          const Spacer(),
+                          Row(children: [
+                            SmallText(text: "By signing up you agree to our"),
+                            MediumText(text: "terms and conditions",fontWeight: FontWeight.w500,
+                            )
+                          ],),
+                          SmallText(
+                            text:
+                            '''Learn how to use your data in our Privacy Policy.''',
+                          ),
+                          SizedBox(height: 20.h),
+                        ],
 
-                        SmallText(
-                          text:
-                          '''By signing up you agree to our terms and conditions. \nLearn how to use your data in our Privacy Policy.''',
-                        ),
-                         SizedBox(height: 20.h),
                       ],
                     ),
                   ),

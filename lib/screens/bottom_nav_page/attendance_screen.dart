@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:driver_app/widgets/button/small_rounded_button.dart';
 import 'package:driver_app/widgets/text/medium_text.dart';
+import '../../res/Colors/color.dart';
 import '../../widgets/attendance table/attendance_table.dart';
 
 class AttendanceScreen extends StatefulWidget {
@@ -16,81 +17,110 @@ class AttendanceScreen extends StatefulWidget {
 class _AttendanceScreenState extends State<AttendanceScreen> {
   DateTime focusedDay = DateTime.now();
   DateTime? selectedDay;
+  Color bgColor1 = AppColor.black;
+  Color bgColor2 = Color(0xff1A1A1A);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: BigText(text: 'Attendance',fontSize: 25.sp,),
-      ),
+        backgroundColor: AppColor.white,
+        title: Text("Attendance",style: TextStyle(fontSize: 24.sp,fontWeight: FontWeight.w500),),
+        leadingWidth: 40.w,
+        leading: Padding(
+          padding:  EdgeInsets.only(left: 5.w),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),      ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding:  EdgeInsets.symmetric(horizontal: 15.w,),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildAttendanceBox(),
-            const SizedBox(height: 20),
+            _buildAttendanceBox(bgColor1,bgColor2),
+
             _buildCalendar(),
-            const SizedBox(height: 20),
-            const Text(
+             SizedBox(height: 20.h),
+             Text(
               "Attendance",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 10),
-            const AttendanceTable(), // ✅ Table moved here
+             SizedBox(height: 10.h),
+             AttendanceTable(), // ✅ Table moved here
           ],
         ),
       ),
     );
   }
 
-  Widget _buildAttendanceBox() {
+  bool isCheckedIn = true;
+
+  Widget _buildAttendanceBox(Color bgColor1, Color bgColor2) {
     return Container(
       padding: EdgeInsets.all(15.r),
       decoration: BoxDecoration(
-        color: const Color(0xffF7F7F7),
+        color: Color(0xffF7F7F7),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MediumText(
-            text: "Mark attendance for today (${_formattedDate(DateTime.now())})",
-            txtColor: const Color(0xff333333),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              SmallRoundedButton(
-                cWidth: 140.w,
-                cHeight: 35.h,
-                radius: 5.r,
-                btnName: 'Check In',
-                bgColor: Colors.black,
-                onPressed: () {},
-              ),
-              SizedBox(width: 10.w),
-              SmallRoundedButton(
-                cWidth: 140.w,
-                cHeight: 35.h,
-                radius: 5.r,
-                btnName: 'Check Out',
-                bgColor: Colors.grey,
-                onPressed: () {},
-              ),
-            ],
-          ),
-          SizedBox(height: 10.h),
-          MediumText(
-            text: "Make sure your location is enabled while you check In",
-            fontSize: 11.sp,
-            txtColor: const Color(0xff333333),
-          ),
-        ],
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            MediumText(
+              text: "Mark attendance for today (${_formattedDate(DateTime.now())})",
+              txtColor: AppColor.calenderTextColor,
+            ),
+            SizedBox(height: 10.h),
+            Row(
+              children: [
+                Expanded(
+                  child: SmallRoundedButton(
+                    cWidth: 140.w,
+                    cHeight: 35.h,
+                    radius: 5.r,
+                    btnName: 'Check In',
+                    bgColor: isCheckedIn ? AppColor.black : Color(0xffD3D3D3),
+                    onPressed: () {
+                      setState(() {
+                        isCheckedIn = !true;
+                      });
+                    },
+                  ),
+                ),
+                SizedBox(width: 10.w),
+                Expanded(
+                  child: SmallRoundedButton(
+                    cWidth: 140.w,
+                    cHeight: 35.h,
+                    radius: 5.r,
+                    btnName: 'Check Out',
+                    bgColor: !isCheckedIn ? AppColor.black : Color(0xffD3D3D3),
+                    onPressed: () {
+                      setState(() {
+                        isCheckedIn = !false;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10.h),
+            MediumText(
+              text: "Make sure your location is enabled while you check In",
+              fontSize: 11.sp,
+              txtColor: AppColor.calenderTextColor,
+            ),
+          ],
+        ),
       ),
     );
   }
+
 
   String _formattedDate(DateTime date) {
     final day = date.day;
@@ -111,7 +141,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   }
 
   String _monthName(int month) {
-    const months = [
+    const  months = [
       '', // 0 index is unused
       'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
       'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec',
@@ -132,17 +162,17 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
           focusedDay = focused;
         });
       },
-      headerStyle: const HeaderStyle(
+      headerStyle:  HeaderStyle(
         formatButtonVisible: false,
         titleCentered: true,
       ),
-      calendarStyle: const CalendarStyle(
+      calendarStyle:  CalendarStyle(
         todayDecoration: BoxDecoration(
-          color: Colors.black,
+          color: AppColor.black,
           shape: BoxShape.circle,
         ),
         selectedDecoration: BoxDecoration(
-          color: Colors.blue,
+          color: AppColor.blue,
           shape: BoxShape.circle,
         ),
       ),

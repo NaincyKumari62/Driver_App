@@ -39,6 +39,7 @@ class _OtpVerificationState extends State<OtpVerification> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.white,
+        titleSpacing: 0,
         leading: IconButton(onPressed: (){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
         }, icon: Icon(Icons.arrow_back)),
@@ -49,13 +50,14 @@ class _OtpVerificationState extends State<OtpVerification> {
         ),),
       ),
       body: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 25.w),
+        padding:  EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
+
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 25.h),
+            SizedBox(height: 5.h),
             MediumText(text: 'Enter the OTP Sent to your mobile number',fontSize: 14,fontWeight: FontWeight.w400,),
-            SizedBox(height: 10.h),
+            SizedBox(height: 18.h),
             Form(
               key: _formKey,
               child: PinCodeTextField(
@@ -87,7 +89,7 @@ class _OtpVerificationState extends State<OtpVerification> {
               ),
             ),
 
-            SizedBox(height: 20.h),
+            SizedBox(height: 150.h),
 
             CustomButton(text: 'Verify', onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (_)=>OnboardingScreen()));

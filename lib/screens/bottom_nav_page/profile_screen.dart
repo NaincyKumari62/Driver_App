@@ -3,6 +3,7 @@ import 'package:driver_app/screens/profile_details/refer_earn_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:driver_app/screens/profile_details/profile_info.dart';
 import 'package:driver_app/widgets/text/big_text.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../res/Colors/color.dart';
 import '../../widgets/Tile/custom_tile.dart';
@@ -14,9 +15,18 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: BigText(text: "Profile",fontSize: 25.sp,txtColor:Color(0xff222222),),
-      ),
+        backgroundColor: AppColor.white,
+        title: Text("Profile",style: TextStyle(fontSize: 24.sp,fontWeight: FontWeight.w500),),
+        leadingWidth: 40.w,
+        leading: Padding(
+          padding:  EdgeInsets.only(left: 10.w),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -24,19 +34,17 @@ class ProfileScreen extends StatelessWidget {
               context,
               tiles: [
                 CustomTile(
-                  imagePath: "assets/images/person_icon.png",
+                  icon: LucideIcons.user,
                   iconColor: AppColor.icon_person,
-                  title: "Personal Info",
+                  title: 'Personal Info',
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const ProfileInfo()),
-                    );
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfileInfo() ));
                   },
                 ),
+
                 CustomTile(
-                  imagePath: "assets/images/bank_icon.png",
-                  iconColor: Colors.blue,
+                  icon: LucideIcons.smile_plus,
+                  iconColor: AppColor.icon_smile,
                   title: "Bank Details",
                   onTap: () {
                     Navigator.push(
@@ -46,58 +54,50 @@ class ProfileScreen extends StatelessWidget {
                   },
                 ),
                 CustomTile(
-                  imagePath: "assets/images/earn_icon.png",
-                  iconColor: Colors.yellow.shade900,
+                  icon: LucideIcons.gift,
+                  iconColor: AppColor.icon_gift,
                   title: "Refer & Earn",
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const ReferEarnScreen()),
+                      MaterialPageRoute(builder: (_) =>  ReferEarnScreen()),
                     );
                   },
                 ),
                 CustomTile(
-                  imagePath: "assets/images/salery.png",
-                  iconColor: Colors.purple.shade900,
+                  icon: LucideIcons.receipt_text,
+                  iconColor: AppColor.icon_slip,
                   title: "Salary Slips",
                   onTap: () {
-                    // TODO: Implement navigation
+
                   },
                 ),
-                CustomTile(
-                  imagePath: "assets/images/attendance_icon.png",
-                  iconColor: Colors.red.shade900,
-                  title: "Attendance Report",
-                  onTap: () {
-                    // TODO: Implement navigation
-                  },
-                ),
+
               ],
             ),
-
 
             _buildSection(
               context,
               tiles: [
                 CustomTile(
-                  imagePath: "assets/images/terms_condition_icon.png",
-                  iconColor: Colors.green.shade700,
+                  icon: LucideIcons.file_text,
+                  iconColor:  AppColor.icon_terms,
                   title: "Terms & Conditions",
                   onTap: () {
                     // TODO: Implement navigation
                   },
                 ),
                 CustomTile(
-                  imagePath: "assets/images/legal_icon.png",
-                  iconColor: Colors.red.shade900,
+                  icon: LucideIcons.scale,
+                  iconColor: AppColor.icon_legal,
                   title: "Legal",
                   onTap: () {
                     // TODO: Implement navigation
                   },
                 ),
                 CustomTile(
-                  imagePath: "assets/images/privacy_icon.png",
-                  iconColor: Colors.grey.shade400,
+                  icon: LucideIcons.file_key,
+                  iconColor: AppColor.icon_privacy,
                   title: "Privacy Policy",
                   onTap: () {
                     // TODO: Implement navigation
@@ -109,8 +109,8 @@ class ProfileScreen extends StatelessWidget {
               context,
               tiles: [
                 CustomTile(
-                  imagePath: "assets/images/logout_icon.png",
-                  iconColor: Colors.red.shade900,
+                  icon: LucideIcons.log_out,
+                  iconColor: AppColor.icon_logout,
                   title: "Log Out",
                   onTap: () {
 
@@ -131,7 +131,7 @@ class ProfileScreen extends StatelessWidget {
       padding:  EdgeInsets.symmetric(vertical: 10.h),
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
       ),
       child: Column(children: tiles),
     );

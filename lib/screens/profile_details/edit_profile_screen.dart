@@ -10,7 +10,9 @@ import '../../widgets/text/big_text.dart';
 
 class EditProfileScreen extends StatelessWidget {
    EditProfileScreen({super.key});
- TextEditingController nameController = TextEditingController();
+   TextEditingController nameController = TextEditingController();
+   TextEditingController emailController = TextEditingController();
+   TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -67,13 +69,13 @@ class EditProfileScreen extends StatelessWidget {
                 SizedBox(height: 15.h,),
                 BigText(text: 'EMAIL',fontWeight: FontWeight.w400,fontSize: 16.sp,),
                 SizedBox(height: 3.h,),
-                InputColorFiledText(controller: nameController, hintText: 'mondalsuman97322@gmail.com'),
+                InputColorFiledText(controller: emailController, hintText: 'mondalsuman97322@gmail.com'),
             
                 // phone number
                 SizedBox(height: 15.h,),
                 BigText(text: 'PHONE NUMBER',fontWeight: FontWeight.w400,fontSize: 16.sp,),
                 SizedBox(height: 3.h,),
-                InputColorFiledText(controller: nameController, hintText: '+91 98328 00571'),
+                InputColorFiledText(controller: phoneController, hintText: '+91 98328 00571'),
 
 
                 // save button
@@ -82,7 +84,9 @@ class EditProfileScreen extends StatelessWidget {
                    onTap: (){
                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen()));
                    },
-                   child: CustomButton(text: 'Save', onPressed: (){}, bgColor: Colors.black,cHeight: 50.h,))
+                   child: CustomButton(text: 'Save', onPressed: (){
+                     Navigator.pop(context);
+                   }, bgColor: Colors.black,cHeight: 50.h,))
 
               ],
             ),

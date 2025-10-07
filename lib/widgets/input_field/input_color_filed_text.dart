@@ -5,12 +5,14 @@ class InputColorFiledText extends StatelessWidget {
   final String hintText;
   final Color? borderColor;
   final Color? fillColor;
+  final bool readOnly;
 
   const InputColorFiledText({
     super.key,
     required this.controller,
     required this.hintText,
     this.borderColor,
+    this.readOnly = false,
     this.fillColor = const Color(0xffF7F7F7),
   });
 
@@ -25,6 +27,7 @@ class InputColorFiledText extends StatelessWidget {
       child: Center(
         child: TextField(
           controller: controller,
+          readOnly: readOnly,
           decoration: InputDecoration(
             hintText: hintText,
             border: borderColor == null

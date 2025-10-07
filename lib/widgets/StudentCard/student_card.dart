@@ -56,26 +56,30 @@ class StudentCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SmallRoundedButton(
-                  cWidth: 150.w,
-                  cHeight: 33.h,
-                  btnName: "Picked Up",
-                  bgColor: pickBtnColor,
-                  onPressed: () {
-                    onPicked();
-                  },
-                  radius: 10.r,
+                Expanded(
+                  child: SmallRoundedButton(
+                    cWidth: 150.w,
+                    cHeight: 33.h,
+                    btnName: "Picked Up",
+                    bgColor: pickBtnColor,
+                    onPressed: () {
+                      onPicked();
+                    },
+                    radius: 10.r,
+                  ),
                 ),
                 SizedBox(width: 5.w),
-                SmallRoundedButton(
-                  cWidth: 150.w,
-                  cHeight: 33.h,
-                  btnName: "Dropped",
-                  bgColor: dropBtnColor,
-                  onPressed: () {
-                    onDropped();
-                  },
-                  radius: 10.r,
+                Expanded(
+                  child: SmallRoundedButton(
+                    cWidth: 150.w,
+                    cHeight: 33.h,
+                    btnName: "Dropped",
+                    bgColor: dropBtnColor,
+                    onPressed: () {
+                      onDropped();
+                    },
+                    radius: 10.r,
+                  ),
                 ),
               ],
             ),

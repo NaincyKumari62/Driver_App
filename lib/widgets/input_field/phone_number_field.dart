@@ -32,25 +32,25 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
       child: Row(
         children: [
           // Flag Dropdown FIRST
-          DropdownButtonHideUnderline(
-            child: DropdownButton<Map<String, String>>(
-              value: countries.firstWhere((c) => c['code'] == selectedCode),
-              items: countries.map((country) {
-                return DropdownMenuItem<Map<String, String>>(
-                  value: country,
-                  child: Text(country['flag']!),
-                );
-              }).toList(),
-              onChanged: (newCountry) {
-                setState(() {
-                  selectedFlag = newCountry!['flag']!;
-                  selectedCode = newCountry['code']!;
-                });
-              },
-            ),
-          ),
+          // DropdownButtonHideUnderline(
+          //   child: DropdownButton<Map<String, String>>(
+          //     value: countries.firstWhere((c) => c['code'] == selectedCode),
+          //     items: countries.map((country) {
+          //       return DropdownMenuItem<Map<String, String>>(
+          //         value: country,
+          //         child: Text(country['flag']!),
+          //       );
+          //     }).toList(),
+          //     onChanged: (newCountry) {
+          //       setState(() {
+          //         selectedFlag = newCountry!['flag']!;
+          //         selectedCode = newCountry['code']!;
+          //       });
+          //     },
+          //   ),
+          // ),
 
-          SizedBox(width: 8),
+          SizedBox(width: 4),
 
           Text(selectedCode, style: TextStyle(fontSize: 16)),
 

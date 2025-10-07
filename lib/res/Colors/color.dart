@@ -7,12 +7,15 @@ class AppColor{
   static const Color onboardingBorder=Color(0xffF0F2F5);
   static const Color uploadFileBg=Color(0xffFAFDFF);
   static const Color uploadFileBorder=Color(0xffE4EDF4);
+  static const Color bottomNavColor=Color(0xff7A7A7A);
+  static const Color calenderTextColor=Color(0xff333333);
+
 
   static const Color grey=Color(0xff222222);
   static const Color fontGrey=Color(0xff222222);
 
   static const Color blue=Color(0xff0088FF);
-  static const Color grey_text=Color(0xff808792);
+  static const Color greyTextColor=Color(0xff808792);
   static const Color green_button=Color(0xff48C089);
   static const Color cardBgColor=Color(0xffF7F7F7);
   static const Color home_text=Color(0xff1A1A1A);
@@ -20,6 +23,19 @@ class AppColor{
   static const Color grey_btn=Color(0xffD9D9D9);
   static const Color grey_date_color=Color(0xffD9D9D9);
   static const Color grey_arrow=Color(0xff747783);
+
+
+//   profile icon color
   static const Color icon_person=Color(0xffFB6F3D);
+  static const Color icon_smile=Color(0xff518EF8);
+  static const Color icon_gift=Color(0xffF9B121);
+  static const Color icon_slip=Color(0xff763DFB);
+  static const Color icon_terms=Color(0xff34A853);
+  static const Color icon_privacy=Color(0xff949494);
+  static const Color icon_logout=Color(0xffE00000);
+  static const Color icon_legal=Color(0xffEA4335);
+
+
+
 
 }

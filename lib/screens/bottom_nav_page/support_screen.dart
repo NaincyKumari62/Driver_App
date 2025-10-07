@@ -11,12 +11,21 @@ class SupportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: BigText(text: 'Help Desk', fontSize: 20.sp),
-      ),
+      appBar:AppBar(
+        backgroundColor: AppColor.white,
+        title: Text("Help Desk",style: TextStyle(fontSize: 24.sp,fontWeight: FontWeight.w500),),
+        leadingWidth: 40.w,
+        leading: Padding(
+          padding:  EdgeInsets.only(left: 5.w),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),      ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding:  EdgeInsets.symmetric(horizontal: 18.w, vertical: 12.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -46,7 +55,7 @@ class SupportScreen extends StatelessWidget {
               "How can I view my assigned route and list\nof student stops in real time?",
             ),
 
-            SizedBox(height: 30.h),
+            SizedBox(height: 60.h),
 
             /// Contact Section
             Text("Contact Support", style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
