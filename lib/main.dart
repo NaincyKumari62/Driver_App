@@ -34,9 +34,9 @@ class MyApp extends StatelessWidget {
         title: 'Driver App',
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         ),
-        home: OnboardingScreen(),
+        home: SplashScreen(),
       ),
     );
   }

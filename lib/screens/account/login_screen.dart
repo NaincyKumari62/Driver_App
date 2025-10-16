@@ -76,8 +76,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         CustomButton(
                           text: 'Continue',
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpVerification()));
-                          },
+                            if (phoneController.text.trim().length == 10) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => OtpVerification(),
+                                ),
+                              );
+                            }                          },
                           bgColor: phoneController.text.trim().length == 10
                               ? AppColor.black
                               : Colors.grey,
@@ -87,7 +93,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           const Spacer(),
                           Row(children: [
                             SmallText(text: "By signing up you agree to our"),
-                            MediumText(text: "terms and conditions",fontWeight: FontWeight.w500,
+                            MediumText(text: " terms and conditions",fontWeight: FontWeight.w400,txtColor: AppColor.blue,
+                                      fontSize: 14,
                             )
                           ],),
                           SmallText(
@@ -108,5 +115,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
 }

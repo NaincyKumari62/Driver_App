@@ -58,7 +58,7 @@ class BankDetailsScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 3.h),
                       InputColorFiledText(
-                        readOnly: false,
+                        readOnly: true,
                         controller: bankAcNumController,
                         hintText: '12345678901',
                         fillColor: Colors.white,

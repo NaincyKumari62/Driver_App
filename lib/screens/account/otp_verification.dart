@@ -68,6 +68,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                   otp =value;
                 },
                 validator: (value){
+
                   if(value == null || value.isEmpty || value.length < 6){
                     return "Please enter a valid 6-digit OTP";
                   }

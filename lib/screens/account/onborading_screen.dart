@@ -44,6 +44,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       onImagePicked(File(pickedFile.path));
     }
   }
+  List<String> states = [
+    'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
+    'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka',
+    'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram',
+    'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu',
+    'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal',
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -139,6 +147,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 InputTextField(
                   controller: dobController,
                   isHintText: true,
+                  readOly: true,
+
+
                   textInputType: TextInputType.datetime,
                   hintText: 'DD/MM/YYYY',
                   suffixIcon: IconButton(
@@ -149,10 +160,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     onPressed: () async {
                       DateTime? pickedDate = await showDatePicker(
                         context: context,
+
                         initialDate: DateTime.now(),
                         firstDate: DateTime(1900),
                         lastDate: DateTime.now(),
                       );
+                      builder:
+                          (BuildContext context, Widget? child) {
+                        return Theme(
+                          data: ThemeData.light().copyWith(
+                            colorScheme: ColorScheme.light(
+                              primary: Colors.grey,
+                              // ✅ Change highlight color (selected date)
+                              onPrimary: Colors.white,
+                              // ✅ Text color on selected date
+                              onSurface: Colors.black, // ✅ Default text color
+                            ),
+                            textButtonTheme: TextButtonThemeData(
+                              style: TextButton.styleFrom(
+                                foregroundColor: Colors
+                                    .grey, // ✅ Button text color (Cancel, OK)
+                              ),
+                            ),
+                          ),
+                          child: child!,
+                        );
+                      };
 
                       if (pickedDate != null) {
                         // Format date as DD/MM/YYYY
@@ -161,6 +194,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             "${pickedDate.month.toString().padLeft(2, '0')}/"
                             "${pickedDate.year}";
                         dobController.text = formattedDate;
+
                       }
                     },
                   ),
@@ -194,158 +228,70 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   hintText: 'Line 2',
                   isHintText: true,
                 ),
-                SizedBox(height: 10.h),
-                // Row(
-                //   crossAxisAlignment: CrossAxisAlignment.start,
-                //   children: [
-                //     Expanded(
-                //       child: DropdownButtonFormField<String>(
-                //         value: selectedState,
-                //         style: TextStyle(fontSize: 14.sp, color: AppColor.black),
-                //         decoration: InputDecoration(
-                //           contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
-                //           focusedBorder: OutlineInputBorder(
-                //             borderRadius: BorderRadius.circular(10.r),
-                //             borderSide: BorderSide(
-                //               color: AppColor.onboardingBorder,
-                //               width: 1.w,
-                //             ),
-                //           ),
-                //           enabledBorder: OutlineInputBorder(
-                //             borderRadius: BorderRadius.circular(10.r),
-                //             borderSide: BorderSide(
-                //               color: AppColor.onboardingBorder,
-                //               width: 1.w,
-                //             ),
-                //           ),
-                //           border: OutlineInputBorder(),
-                //         ),
-                //         items: [
-                //           'State',
-                //           'Delhi',
-                //           'Maharashtra',
-                //           'Karnataka',
-                //           'Uttar Pradesh',
-                //           'Bihar'
-                //         ].map((String value) {
-                //           return DropdownMenuItem<String>(
-                //             value: value,
-                //             child: Text(
-                //               value,
-                //               style: TextStyle(fontSize: 14.sp),
-                //             ),
-                //           );
-                //         }).toList(),
-                //         onChanged: (value) {
-                //           setState(() {
-                //             selectedState = value!;
-                //           });
-                //         },
-                //       ),
-                //     ),
-                //     SizedBox(width: 8.w),
-                //
-                //     Expanded(
-                //       child: InputTextField(
-                //         hintText: "Postal Code",
-                //         controller: postalController,
-                //         isHintText: true,
-                //         validator: (value) {
-                //           if (value == null || value.isEmpty) {
-                //             return "Please Enter Postal Code";
-                //           }
-                //           return null;
-                //         },
-                //       ),
-                //     ),
-                //   ],
-                // ),
 
 
-                // SizedBox(height: 10.h),
-                // BigText(
-                //   text: "Bank Account Number*",
-                //     fontSize: 14.sp, fontWeight: FontWeight.w400,txtColor: AppColor.black
-                // ),
-                // SizedBox(height: 4.h),
-                // InputTextField(
-                //   hintText: "Bank Account Number",
-                //   controller: bankAccountController,
-                //   validator: (value) {
-                //     if (value == null || value.isEmpty) {
-                //       return "Please Enter Bank Account Number";
-                //     }
-                //     return null;
-                //   },
-                // ),
-                // SizedBox(height: 10.h),
-                //
-                // BigText(
-                //   text: "Bank Account Holder Name*",
-                //     fontSize: 14.sp, fontWeight: FontWeight.w400,txtColor: AppColor.black
-                // ),
-                // SizedBox(height: 4.h),
-                // InputTextField(
-                //   hintText: "Bank Account Holder Name",
-                //   controller: holderNameController,
-                //   validator: (value) {
-                //     if (value == null || value.isEmpty) {
-                //       return "Please Enter Account Holder Name";
-                //     }
-                //     return null;
-                //   },
-                // ),
-                // SizedBox(height: 10.h),
-                // BigText(
-                //   text: "Bank Name*",
-                //     fontSize: 14.sp, fontWeight: FontWeight.w400,txtColor: AppColor.black
-                // ),
-                // SizedBox(height: 4.h),
-                // InputTextField(
-                //   hintText: "Bank Name",
-                //   controller: bankNameController,
-                //   validator: (value) {
-                //     if (value == null || value.isEmpty) {
-                //       return "Please Enter Bank Name";
-                //     }
-                //     return null;
-                //   },
-                // ),
-                // SizedBox(height: 10.h),
-                // BigText(
-                //   text: "Branch Name*",
-                //   fontSize: 14.sp,
-                //   fontWeight: FontWeight.w400,
-                // ),
-                // SizedBox(height: 4.h),
-                // InputTextField(
-                //   hintText: "Branch Name",
-                //   controller: branchNameController,
-                //   validator: (value) {
-                //     if (value == null || value.isEmpty) {
-                //       return "Please Enter Branch Name";
-                //     }
-                //     return null;
-                //   },
-                // ),
-                // SizedBox(height: 10.h),
-                // BigText(
-                //   text: "IFSC Code*",
-                //     fontSize: 14.sp, fontWeight: FontWeight.w400,txtColor: AppColor.black
-                // ),
-                // SizedBox(height: 4.h),
-                // InputTextField(
-                //   hintText: "IFSC Code",
-                //   controller: ifscController,
-                //   validator: (value) {
-                //     if (value == null || value.isEmpty) {
-                //       return "Please Enter IFSC Code";
-                //     }
-                //     return null;
-                //   },
-                // ),
-                //,
+SizedBox(height: 10.h,),
+                Row(
+                  children: [
 
+                    Expanded(
+
+                      flex: 1,
+                      child: DropdownButtonFormField<String>(
+                        isExpanded: true,
+
+                        value: selectedState.isNotEmpty ? selectedState : null,
+                        items: states.map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+
+
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            selectedState = value!;
+                          });
+                        },
+                        decoration: InputDecoration(
+                          hintText: "State",
+                          fillColor: Colors.white,
+                          filled: true,
+
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
+                          isDense: true,
+
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: AppColor.onboardingBorder),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: AppColor.grey),
+                          ),
+
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10.w),
+
+                    Expanded(
+                      flex: 1,
+                      child: InputTextField(
+                        controller: postalController,
+                        hintText: "Postal Code",
+                        isHintText: true,
+                        textInputType: TextInputType.number,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Enter postal code";
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
 
 
                 SizedBox(height: 24.h),

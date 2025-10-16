@@ -38,7 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    // by default sabhi ka status none
     studentStatus = List.filled(students.length, "pickup");
   }
 
@@ -49,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         title: Padding(
-          padding: EdgeInsets.only(top: 13.h,left: 1.w,bottom: 4.h),
+          padding: EdgeInsets.only(top: 13,left: 1,bottom: 4.h),
           child: Row(
             children: [
               BigText(text: 'Hello, ', fontSize: 22.sp),
@@ -59,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 17.w),
+        padding: EdgeInsets.symmetric(horizontal: 17),
         child: Column(
           children: [
             // Top Section
@@ -93,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
               alignment: Alignment.topLeft,
               child: Padding(
                 padding:
-                EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: MediumText(text: "Students",txtColor: Colors.grey.shade700,),
               ),
             ),
@@ -105,7 +104,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   final student = students[index];
                   final status = studentStatus[index];
 
-                  // status ke hisaab se button color set
                   Color pickColor =
                   status == "pickup" ? Colors.black : Colors.grey;
                   Color dropColor =

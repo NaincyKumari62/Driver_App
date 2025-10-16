@@ -1,10 +1,13 @@
+import 'package:driver_app/res/Colors/color.dart';
 import 'package:driver_app/widgets/button/button.dart';
 import 'package:driver_app/widgets/button/rounded_button.dart';
 import 'package:driver_app/widgets/button/small_rounded_button.dart';
 import 'package:driver_app/widgets/text/big_text.dart';
 import 'package:driver_app/widgets/text/medium_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class StudentCard extends StatelessWidget {
   final String name;
@@ -50,6 +53,12 @@ class StudentCard extends StatelessWidget {
                     ],
                   ),
                 ),
+                SizedBox(width: 50.w,height: 5.h,),
+                InkWell(
+                  onTap: (){ launch('tel:+91 6209878308');},
+                  child: CircleAvatar(backgroundColor: Colors.black,
+                  radius: 17.r,child: Icon(LucideIcons.phone,color: AppColor.white,size: 15,),),
+                )
               ],
             ),
             SizedBox(height: 10.h),

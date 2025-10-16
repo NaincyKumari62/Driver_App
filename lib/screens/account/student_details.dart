@@ -22,6 +22,9 @@ class _OnboardingScreenState extends State<StudentDetails> {
 
   final picker = ImagePicker();
 
+  final _formKey = GlobalKey<FormState>();
+
+
   Future<void> getImage(Function(File) onImagePicked) async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
@@ -114,8 +117,10 @@ class _OnboardingScreenState extends State<StudentDetails> {
               CustomButton(
                 text: 'Create Profile',
                 onPressed: () {
-
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=>ApprovalScreen()));
+                  // if(_formKey.currentState!.validate()) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => ApprovalScreen()));
+                  // }
                 },
                 bgColor: AppColor.black,
               ),
